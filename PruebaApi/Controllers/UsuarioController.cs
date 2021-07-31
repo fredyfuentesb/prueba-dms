@@ -19,7 +19,7 @@ namespace PruebaApi.Controllers
         private readonly UsuariosRepositorio _usuariosRep = new UsuariosRepositorio();
         private readonly TercerosRepositorio _tercerosRep = new TercerosRepositorio();
 
-        #region Post
+        #region Save
         /// <summary>
         /// Permite crear un usuario en el sistema, pero tambien crea un tercero con los datos complementarios
         /// </summary>
