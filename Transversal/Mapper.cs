@@ -1,4 +1,4 @@
-﻿/*MyS Mapper
+﻿/*Mapper
  *Clase que permite mapear de un objeto origen a un objeto destino, las propiedades de cada objeto deben tenr el mismo nombre
  *Esta Clase fue generada por medio de una herramienta de generacion automatica de codigo, si usted edita la funcionalidad de la misma por favor indiquelo en los comentarios.
  *<autor>Fredy Fuentes</autor>
