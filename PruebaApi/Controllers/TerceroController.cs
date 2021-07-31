@@ -43,6 +43,11 @@ namespace PruebaApi.Controllers
                     statusCode = HttpStatusCode.OK;
                     data = new { tercero = model, message = "Información guardada correctamente" };
                 }
+                else
+                {
+                    statusCode = HttpStatusCode.BadRequest;
+                    data = new { message = "Información no guardada" };
+                }
             }
             else
             {
@@ -119,7 +124,7 @@ namespace PruebaApi.Controllers
             }
             else
             {
-                statusCode = HttpStatusCode.OK;
+                statusCode = HttpStatusCode.NoContent;
                 data = new { message = "No se encontraron registros guardados" };
             }
 
