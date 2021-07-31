@@ -80,7 +80,7 @@ namespace PruebaApi.Controllers
         }
         #endregion
 
-        #region put
+        #region Update
         /// <summary>
         /// Permite actulizar el nombre del usuario y el estado
         /// </summary>
@@ -124,7 +124,7 @@ namespace PruebaApi.Controllers
         }
         #endregion
 
-        #region get
+        #region List
         /// <summary>
         /// informacion basica de los usuarios
         /// </summary>
