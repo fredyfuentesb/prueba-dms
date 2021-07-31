@@ -180,6 +180,16 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Implementacion\Implementacion.csproj">
+      <Project>{5d961ea6-a522-457c-854c-8b4898abb19d}</Project>
+      <Name>Implementacion</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Transversal\Transversal.csproj">
+      <Project>{c381e0ca-5f6d-4640-98f0-f09e8022f2ad}</Project>
+      <Name>Transversal</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

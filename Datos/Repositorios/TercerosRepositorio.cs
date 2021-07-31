@@ -15,7 +15,7 @@ namespace Datos.Repositorios
 {
     public class TercerosRepositorio
     {
-        public bool Save(TercerosDto dto) => RepositorioGenerico<TercerosDto>.GenericOption(dto, "1", "dbo", "DefaultConnection");
+        public bool Save(TercerosDto dto, ref int id) => RepositorioGenerico<TercerosDto>.GenericOption(dto, "1", "dbo", "DefaultConnection", ref id);
         public bool Update(TercerosDto dto) => RepositorioGenerico<TercerosDto>.GenericOption(dto, "2", "dbo", "DefaultConnection");
         public bool Delete(TercerosDto dto) => RepositorioGenerico<TercerosDto>.GenericOption(dto, "3", "dbo", "DefaultConnection");
         public TercerosDto FindById(int id) => RepositorioGenerico<TercerosDto>.FindById("id", id.ToString(), "prueba", "dbo", "DefaultConnection");

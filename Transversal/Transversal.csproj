@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>c381e0ca-5f6d-4640-98f0-f09e8022f2ad</ProjectGuid>
+    <ProjectGuid>{C381E0CA-5F6D-4640-98F0-F09E8022F2AD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Transversal</RootNamespace>
@@ -31,24 +31,33 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Dtos\Config_NotificacionDto.cs" />
+    <Compile Include="Dtos\MenusDto.cs" />
+    <Compile Include="Dtos\Menu_RolDto.cs" />
+    <Compile Include="Dtos\RolesDto.cs" />
+    <Compile Include="Dtos\TercerosDto.cs" />
+    <Compile Include="Dtos\Tercero_ArchivosDto.cs" />
+    <Compile Include="Dtos\Tercero_NotificacionDto.cs" />
+    <Compile Include="Dtos\Tipo_NotificacionesDto.cs" />
+    <Compile Include="Dtos\UsuariosDto.cs" />
+    <Compile Include="Dtos\Usuario_MenuDto.cs" />
+    <Compile Include="Dtos\Usuario_RolDto.cs" />
+    <Compile Include="Dtos\Variables_NotificacionDto.cs" />
+    <Compile Include="FredyMapper.cs" />
+    <Compile Include="Helpers\HashHelper.cs" />
+    <Compile Include="Mapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+</Project>

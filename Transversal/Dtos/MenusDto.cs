@@ -34,11 +34,11 @@ namespace Transversal.Dtos
             get { return Controlador; }
             set { Controlador = value; }
         }
-        private string Accion;
-        public string accion
+        private string Destino;
+        public string destino
         {
-            get { return Accion; }
-            set { Accion = value; }
+            get { return Destino; }
+            set { Destino = value; }
         }
         private string Icono;
         public string icono

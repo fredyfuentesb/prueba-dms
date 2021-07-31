@@ -6,6 +6,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,10 +16,25 @@ namespace Datos.Repositorios
 {
     public class UsuariosRepositorio
     {
-        public bool Save(UsuariosDto dto) => RepositorioGenerico<UsuariosDto>.GenericOption(dto, "1", "dbo", "DefaultConnection");
+        public bool Save(UsuariosDto dto, ref int id) => RepositorioGenerico<UsuariosDto>.GenericOption(dto, "1", "dbo", "DefaultConnection", ref id);
         public bool Update(UsuariosDto dto) => RepositorioGenerico<UsuariosDto>.GenericOption(dto, "2", "dbo", "DefaultConnection");
         public bool Delete(UsuariosDto dto) => RepositorioGenerico<UsuariosDto>.GenericOption(dto, "3", "dbo", "DefaultConnection");
         public UsuariosDto FindById(int id) => RepositorioGenerico<UsuariosDto>.FindById("id", id.ToString(), "prueba", "dbo", "DefaultConnection");
         public List<UsuariosDto> List() => RepositorioGenerico<UsuariosDto>.List("prueba", "dbo", "DefaultConnection");
+        public DataSet ListAllUsers()
+        {
+            DataSet result = new DataSet();
+            try
+            {
+                result = RepositorioGenerico<DataSet>.GenericQuery("DefaultConnection", "*", 0, "", 0, "", " prueba.dbo.vw_usuario_tercero");
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+                return null;
+            }
+            return result;
+        }
+
     }
 }
