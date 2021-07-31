@@ -19,6 +19,7 @@ namespace Datos.Repositorios
         public bool Update(Config_NotificacionDto dto) => RepositorioGenerico<Config_NotificacionDto>.GenericOption(dto, "2", "dbo", "DefaultConnection");
         public bool Delete(Config_NotificacionDto dto) => RepositorioGenerico<Config_NotificacionDto>.GenericOption(dto, "3", "dbo", "DefaultConnection");
         public Config_NotificacionDto FindById(int id) => RepositorioGenerico<Config_NotificacionDto>.FindById("id", id.ToString(), "prueba", "dbo", "DefaultConnection");
+        public Config_NotificacionDto FindByType(int id_tipo_notificacion) => RepositorioGenerico<Config_NotificacionDto>.FindById("id_tipo_notificacion", id_tipo_notificacion.ToString(), "prueba", "dbo", "DefaultConnection");
         public List<Config_NotificacionDto> List() => RepositorioGenerico<Config_NotificacionDto>.List("prueba", "dbo", "DefaultConnection");
     }
 }
