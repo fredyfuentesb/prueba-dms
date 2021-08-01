@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Implementacion\Config_NotificacionAplicacion.cs" />
     <Compile Include="Implementacion\EstadisticaAplicacion.cs" />
+    <Compile Include="Implementacion\SeguridadAplicacion.cs" />
     <Compile Include="Implementacion\TercerosAplicacion.cs" />
     <Compile Include="Implementacion\Tercero_ArchivosAplicacion.cs" />
     <Compile Include="Implementacion\UsuariosAplicacion.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Modelos\TerceroArchivoModel.cs" />
     <Compile Include="Modelos\TerceroModel.cs" />
     <Compile Include="Modelos\UsuarioCambioClaveModel.cs" />
+    <Compile Include="Modelos\UsuarioLogin.cs" />
     <Compile Include="Modelos\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebApiHelper.cs" />

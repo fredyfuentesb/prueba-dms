@@ -1,5 +1,6 @@
 ﻿using Implementacion.Implementacion;
 using Implementacion.Modelos;
+using PruebaWeb.Tags;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,6 +12,7 @@ using Transversal;
 
 namespace PruebaWeb.Controllers
 {
+    [Autenticado]
     public class UsuarioController : Controller
     {
         private readonly UsuariosAplicacion _usuarioApp = new UsuariosAplicacion();

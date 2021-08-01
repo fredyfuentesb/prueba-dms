@@ -1,4 +1,5 @@
 ﻿using Implementacion.Implementacion;
+using PruebaWeb.Tags;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,6 +10,7 @@ using System.Web.Mvc;
 
 namespace PruebaWeb.Controllers
 {
+    [Autenticado]
     public class EstadisticaController : Controller
     {
         private readonly EstadisticaAplicacion _estadisticaApp = new EstadisticaAplicacion();

@@ -1,5 +1,6 @@
 ﻿using Implementacion.Implementacion;
 using Implementacion.Modelos;
+using PruebaWeb.Tags;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -12,6 +13,7 @@ using Transversal.Dtos;
 
 namespace PruebaWeb.Controllers
 {
+    [Autenticado]
     public class TerceroController : Controller
     {
         private readonly TercerosAplicacion _tercero = new TercerosAplicacion();
