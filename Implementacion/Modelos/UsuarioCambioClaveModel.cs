@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Implementacion.Modelos
 {
-    [DataContract(Name = "UsuarioCambioClaveModal"), Serializable]
-    public class UsuarioCambioClaveModal
+    [DataContract(Name = "UsuarioCambioClaveModel"), Serializable]
+    public class UsuarioCambioClaveModel
     {
         [DataMember(Name = "Id")]
         public int id { get; set; }

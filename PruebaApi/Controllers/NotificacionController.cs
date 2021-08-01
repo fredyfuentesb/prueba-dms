@@ -58,7 +58,7 @@ namespace PruebaApi.Controllers
                     if (_configNotificacionRep.Update(configNotificacionDto))
                     {
                         statusCode = HttpStatusCode.OK;
-                        data = new { config = configNotificacionDto, message = "Información guardada correctamente" };
+                        data = configNotificacionDto;
                     }
                     else
                     {
@@ -73,7 +73,7 @@ namespace PruebaApi.Controllers
                     if (_configNotificacionRep.Save(configNotificacionDto))
                     {
                         statusCode = HttpStatusCode.OK;
-                        data = new { config = configNotificacionDto, message = "Información guardada correctamente" };
+                        data = configNotificacionDto;
                     }
                     else
                     {

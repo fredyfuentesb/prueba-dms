@@ -133,14 +133,14 @@ namespace PruebaWeb.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<JsonResult> CambiarClave(UsuarioCambioClaveModal model)
+        public async Task<JsonResult> CambiarClave(UsuarioCambioClaveModel model)
         {
             bool guardo = false;
             object data;
 
             if (ModelState.IsValid)
             {
-                UsuarioCambioClaveModal cambio = await _usuarioApp.CambiarClave(model);
+                UsuarioCambioClaveModel cambio = await _usuarioApp.CambiarClave(model);
                 if(cambio != null)
                 {
                     guardo = true;

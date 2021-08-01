@@ -121,6 +121,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NotificacionController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -206,8 +207,8 @@
     <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <None Include="packages.config" />
     <Content Include="Scripts\js\.eslintrc.json" />
-    <Content Include="Views\Usuario\List.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Notificacion\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Implementacion\Implementacion.csproj">

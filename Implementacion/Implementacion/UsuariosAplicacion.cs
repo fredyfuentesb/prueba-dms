@@ -115,9 +115,9 @@ namespace Implementacion.Implementacion
         #endregion
 
         #region CambiarClave
-        public async Task<UsuarioCambioClaveModal> CambiarClave(UsuarioCambioClaveModal model)
+        public async Task<UsuarioCambioClaveModel> CambiarClave(UsuarioCambioClaveModel model)
         {
-            UsuarioCambioClaveModal usuarioCambioClave = new UsuarioCambioClaveModal();
+            UsuarioCambioClaveModel usuarioCambioClave = new UsuarioCambioClaveModel();
             HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");
             string jsonData = JsonConvert.SerializeObject(model);
             StringContent content = _apiHelper.GetSerializedJson(jsonData);
@@ -127,7 +127,7 @@ namespace Implementacion.Implementacion
                 if (response.IsSuccessStatusCode)
                 {
                     string resultJson = await response.Content.ReadAsStringAsync();
-                    usuarioCambioClave = JsonConvert.DeserializeObject<UsuarioCambioClaveModal>(resultJson);
+                    usuarioCambioClave = JsonConvert.DeserializeObject<UsuarioCambioClaveModel>(resultJson);
                 }
             }
             catch (Exception ex)
