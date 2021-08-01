@@ -198,6 +198,10 @@ namespace PruebaWeb.Controllers
             Tercero_ArchivosDto terceroArchivoEliminado = await _terceroArchivo.Delete(id);
             if(terceroArchivoEliminado != null)
             {
+                if (System.IO.File.Exists(terceroArchivoEliminado.ruta_archivo))
+                {
+                    System.IO.File.Delete(terceroArchivoEliminado.ruta_archivo);
+                }
                 elimino = true;
                 data = new { elimino, message = "Se elimino correctamente" };
             }
@@ -211,10 +215,11 @@ namespace PruebaWeb.Controllers
         #endregion
 
         #region DownloadFile
-        public ActionResult DownloadFile(int id)
+        public async Task<ActionResult> DownloadFile(int id)
         {
-            string rutaPdf = $"{ConfigurationManager.AppSettings["RUTA_DOCUMENTOS_PDF"]}{id}.pdf";
-            return new DownloadResult { VirtualPath = rutaPdf, FileDownloadName = $"{id}.pdf" };
+            Tercero_ArchivosDto terceroArchivo = await _terceroArchivo.FindById(id);
+            string rutaPdf = $"{terceroArchivo.ruta_archivo}";
+            return new DownloadResult { VirtualPath = rutaPdf, FileDownloadName = $"{terceroArchivo.nombre_archivo}" };
         }
         #endregion
         #endregion

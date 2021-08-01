@@ -89,6 +89,29 @@ namespace PruebaApi.Controllers
         }
         #endregion
 
+        #region FindById
+        [HttpGet]
+        public HttpResponseMessage FindById(int id)
+        {
+            HttpStatusCode statusCode = new HttpStatusCode();
+            object data = null;
+
+            Tercero_ArchivosDto terceroArchivo = _terceroArchivoRep.FindById(id);
+            if (terceroArchivo != null)
+            {
+                statusCode = HttpStatusCode.OK;
+                data = terceroArchivo;
+            }
+            else
+            {
+                statusCode = HttpStatusCode.BadRequest;
+                data = new { message = "No se encontraron registros guardados" };
+            }
+
+            return Request.CreateResponse(statusCode, data, "application/json");
+        }
+        #endregion
+
         #region Delete
         /// <summary>
         /// Elimina logicamente (Pero no fisicamente) un archivo asociado a un cliente

@@ -40,6 +40,13 @@ $(document).ready(function () {
 
     refreshTablaArchivos();
 
+    //Se detecta el click el el icono de descargar archivo
+    $('#archivosRegistrados tbody').on('click', 'a.download_archivo', function () {
+        var tr = $(this).closest('tr');
+        var row = terceroArchivo.row(tr);
+        window.location.href = `/Tercero/DownloadFile/${row.data().id}`;
+    }); 
+
     //Se detecta el click el el icono de eliminar tercero para mostar el modal de cambio de clave con la informacion del usuario
     $('#archivosRegistrados tbody').on('click', 'a.delete_tercero', function () {
         var tr = $(this).closest('tr');
@@ -69,7 +76,7 @@ function refreshTablaArchivos() {
                 {
                     'searchable': false,
                     'orderable': false,
-                    'defaultContent': '<a href="javascript:" class="edit_tercero"><i class="fas fa-download" title="Descargar"></i></a>   <a href="javascript:" class="delete_tercero error"><i class="fas fa-trash-alt" title="Eliminar"></i></a>'
+                    'defaultContent': '<a href="javascript:" class="download_archivo"><i class="fas fa-download" title="Descargar"></i></a>   <a href="javascript:" class="delete_tercero error"><i class="fas fa-trash-alt" title="Eliminar"></i></a>'
                 }
             ]
         });

@@ -79,6 +79,35 @@ namespace Implementacion.Implementacion
         }
         #endregion
 
+        #region FindById
+        public async Task<Tercero_ArchivosDto> FindById(int id)
+        {
+            Tercero_ArchivosDto terceroArchivo = new Tercero_ArchivosDto();
+            HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");
+
+            try
+            {
+                var response = await httpClient.GetAsync($"{BASE}/?id={id}");
+                if (response.IsSuccessStatusCode)
+                {
+                    string resultJson = await response.Content.ReadAsStringAsync();
+                    terceroArchivo = JsonConvert.DeserializeObject<Tercero_ArchivosDto>(resultJson);
+                }
+                else
+                {
+                    terceroArchivo = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+                terceroArchivo = null;
+            }
+
+            return terceroArchivo;
+        }
+        #endregion
+
         #region Delete
         /// <summary>
         /// Envia una peticion DELETE a api/TercerArchivo para eliminar logicamente un archivo
