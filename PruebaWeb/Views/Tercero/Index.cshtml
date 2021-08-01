@@ -108,6 +108,56 @@
     </div>
 </section>
 
+<div id="updateTerceroModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modificar <b id="titleModalEdit"></b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form action="/Tercero/Update" method="post" autocomplete="off" id="fromTerceroUpdate">
+                <div class="modal-body row">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" id="nombre2" name="nombre" placeholder="Ingresa el nombre" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="apellidos">Apellidos</label>
+                            <input type="text" class="form-control" id="apellidos2" name="apellidos" placeholder="Ingresa los apellidos" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="direccion">Direccion</label>
+                            <input type="text" class="form-control" id="direccion2" name="direccion" placeholder="Ingresa la direccion" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email2" name="email" placeholder="Ingresa el email" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="telefono">Telefono</label>
+                            <input type="tel" class="form-control" id="telefono2" name="telefono" placeholder="Ingresa el telefono" />
+                        </div>
+                    </div>
+                    <input type="hidden" class="form-control" id="id2" name="id" />
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div id="eliminarTerceroModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">

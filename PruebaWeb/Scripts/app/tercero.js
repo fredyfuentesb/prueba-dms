@@ -30,9 +30,47 @@ $(document).ready(function () {
 
         }
     });
+
+    /*
+    * Se valida los campos obligatorios del formulario de actualizacion de tercero
+    */
+    $('#fromTerceroUpdate').validate({
+        focusInvalid: false,
+        ignore: "",
+        rules: {
+            nombre: { required: true },
+            apellidos: { required: true },
+            direccion: { required: true },
+            email: { required: true },
+            telefono: { required: true, minlength: 7, number: true }
+        },
+        submitHandler: function (form) {
+            $.post('/Tercero/Update', $('#fromTerceroUpdate').serialize(), function (data) {
+                //Una vez guardada la informacion se refresca la tabla para mostrar los nuevos datos
+                refreshTablaTerceros();
+                //Se envia una notificacion de exito o de error al usuario dependiendo de como salio la transaccion
+                if (data.guardo) {
+                    toastr.success(`Exito al guardar el tercero: ${$('#nombre').val()} ${$('#apellidos').val()}`);
+                    $('#updateTerceroModal').modal("hide");
+                    $('#fromTerceroUpdate').trigger("reset");                    
+                }
+                else {
+                    toastr.error(`Error al guardar el tercero: ${$('#nombre').val()} ${$('#apellidos').val()}`);
+                }
+            });
+
+        }
+    });
     refreshTablaTerceros();
 
-    //Se detecta el click el el icono de editar usuario para mostar el modal de cambio de clave con la informacion del usuario
+    //Se detecta el click el el icono de editar tercero para mostar el modal de cambio de clave con la informacion del usuario
+    $('#tercerosRegistrados tbody').on('click', 'a.edit_tercero', function () {
+        var tr = $(this).closest('tr');
+        var row = tercero.row(tr);
+        updateTercero(row.data());
+    }); 
+
+    //Se detecta el click el el icono de eliminar tercero para mostar el modal de cambio de clave con la informacion del usuario
     $('#tercerosRegistrados tbody').on('click', 'a.delete_tercero', function () {
         var tr = $(this).closest('tr');
         var row = tercero.row(tr);
@@ -58,7 +96,7 @@ function refreshTablaTerceros() {
                 {
                     'searchable': false,
                     'orderable': false,
-                    'defaultContent': '<a href="javascript:" class="edit_tercero"><i class="fas fa-edit" title="Editar"></i></a><a href="javascript:" class="delete_tercero"><i class="fas fa-user-minus" title="Eliminar"></i></a>'
+                    'defaultContent': '<a href="javascript:" class="edit_tercero"><i class="fas fa-edit" title="Editar"></i></a>   <a href="javascript:" class="delete_tercero error"><i class="fas fa-user-minus" title="Eliminar"></i></a>    <a href="javascript:" class="files_tercero"><i class="fas fa-folder" title="Archivos"></i></a>'
                 }
             ]
         });
@@ -76,6 +114,17 @@ function showLoaderTercero(show) {
         $('#dvTerceros').show();
         $('#dvLoaderTercero').hide();
     }
+}
+
+function updateTercero(data) {
+    $('#updateTerceroModal').modal("show");
+    $('#titleModalEdit').html(`${data.nombre} ${data.apellidos}`);    
+    $('#id2').val(data.id);
+    $('#nombre2').val(data.nombre);
+    $('#apellidos2').val(data.apellidos);
+    $('#direccion2').val(data.direccion);
+    $('#email2').val(data.email);
+    $('#telefono2').val(data.telefono);
 }
 
 function eliminarTercero(data) {

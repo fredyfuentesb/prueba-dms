@@ -60,6 +60,41 @@ namespace PruebaWeb.Controllers
         }
         #endregion
 
+        #region Update
+        [HttpPost]
+        public async Task<JsonResult> Update(TerceroModel model)
+        {
+            bool guardo = false;
+            object data;
+
+            if (ModelState.IsValid)
+            {
+                TerceroModel terceroCreado = await _tercero.Update(model);
+                if (terceroCreado != null)
+                {
+                    guardo = true;
+                    data = new { guardo, terceroCreado };
+                }
+                else
+                {
+                    guardo = false;
+                    data = new { guardo, message = "No se logro guardar" };
+                }
+            }
+            else
+            {
+                guardo = false;
+                List<string> errors = ModelState.Values
+                                        .SelectMany(x => x.Errors)
+                                        .Select(x => x.ErrorMessage)
+                                        .ToList();
+                data = new { guardo, errors };
+            }
+
+            return Json(data, JsonRequestBehavior.DenyGet);
+        }
+        #endregion
+
         #region Delete
         public async Task<JsonResult> Delete(int id)
         {
