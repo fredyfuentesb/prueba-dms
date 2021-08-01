@@ -121,25 +121,42 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\app\loader.css" />
     <Content Include="Content\css\adminlte.min.css" />
     <Content Include="Content\css\alt\adminlte.components.min.css" />
     <Content Include="Content\css\alt\adminlte.core.min.css" />
     <Content Include="Content\css\alt\adminlte.extra-components.min.css" />
     <Content Include="Content\css\alt\adminlte.pages.min.css" />
     <Content Include="Content\css\alt\adminlte.plugins.min.css" />
+    <Content Include="Content\fontawesome-free\css\all.min.css" />
+    <Content Include="Content\fontawesome-free\css\brands.min.css" />
+    <Content Include="Content\fontawesome-free\css\fontawesome.min.css" />
+    <Content Include="Content\fontawesome-free\css\regular.min.css" />
+    <Content Include="Content\fontawesome-free\css\solid.min.css" />
+    <Content Include="Content\fontawesome-free\css\svg-with-js.min.css" />
+    <Content Include="Content\fontawesome-free\css\v4-shims.min.css" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\sweetalert2-theme-bootstrap-4\bootstrap-4.min.css" />
+    <Content Include="Content\sweetalert2\sweetalert2.min.css" />
+    <Content Include="Content\toastr\toastr.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="img\AdminLTELogo.png" />
     <Content Include="img\user2-160x160.jpg" />
+    <Content Include="Scripts\app\usuario.js" />
     <Content Include="Scripts\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Scripts\jqueryValidate-es.js" />
     <Content Include="Scripts\jquery\jquery.min.js" />
     <Content Include="Scripts\jquery\jquery.slim.js" />
     <Content Include="Scripts\jquery\jquery.slim.min.js" />
@@ -148,6 +165,9 @@
     <Content Include="Scripts\js\pages\dashboard.js" />
     <Content Include="Scripts\js\pages\dashboard2.js" />
     <Content Include="Scripts\js\pages\dashboard3.js" />
+    <Content Include="Scripts\sweetalert2\sweetalert2.all.min.js" />
+    <Content Include="Scripts\sweetalert2\sweetalert2.min.js" />
+    <Content Include="Scripts\toastr\toastr.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -172,8 +192,22 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <None Include="packages.config" />
     <Content Include="Scripts\js\.eslintrc.json" />
+    <Content Include="Views\Usuario\List.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Implementacion\Implementacion.csproj">

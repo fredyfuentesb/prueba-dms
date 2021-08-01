@@ -1,0 +1,206 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/app/usuario.js"></script>
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Configuracion Usuarios</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item active">Usuarios</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="fas fa-user"></i>
+                    Nuevo Usuarios
+                </h3>
+            </div>
+            <form action="/Usuario/Save" method="post" autocomplete="off" id="fromUsuario">
+                <div class="card-body row">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa el nombre" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="apellidos">Apellidos</label>
+                            <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Ingresa los apellidos" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Ingresa el email" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="usuario">Usuario</label>
+                            <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingresa el usuario" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="clave">Contraseña</label>
+                            <input type="password" class="form-control" id="clave" name="clave" placeholder="Ingresa la contraseña" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="repite_clave">Repite Contraseña</label>
+                            <input type="password" class="form-control" id="repite_clave" name="repite_clave" placeholder="Repite la contraseña" />
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12" style="display: none;" id="dvLoaderUsuario">
+        <center><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></center>
+    </div>
+    <div class="container-fluid" style="display: none;" id="dvUsuarios">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="fas fa-user"></i>
+                    Usuarios Registrados
+                </h3>
+            </div>
+            <div class="card-body" style="overflow-x:auto;">
+                <table class="display responsive nowrap" style="width:100%" id="usuariosRegistrados">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>Email</th>
+                            <th>Usuario</th>
+                            <th>Estado</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.content -->
+<div id="updateUsuarioModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modificar <b id="titleModalEdit"></b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form action="/Usuario/Update" method="post" autocomplete="off" id="fromUsuarioUpdate">
+                <div class="modal-body row">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" id="nombre2" name="nombre" placeholder="Ingresa el nombre" readonly />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="apellidos">Apellidos</label>
+                            <input type="text" class="form-control" id="apellidos2" name="apellidos" placeholder="Ingresa los apellidos" readonly />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email2" name="email" placeholder="Ingresa el email" readonly />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="usuario">Usuario</label>
+                            <input type="text" class="form-control" id="usuario2" name="usuario" placeholder="Ingresa el usuario" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="estado">Estado</label>
+                            <select class="form-control" id="activo" name="activo">
+                                <option value="true">Activo</option>
+                                <option value="false">Inactivo</option>
+                            </select>
+                        </div>
+                    </div>
+                    <input type="hidden" value="oculto" class="form-control" id="clave2" name="clave" />
+                    <input type="hidden" class="form-control" id="id" name="id" />
+                    <input type="hidden" class="form-control" id="id_tercero" name="id_tercero" />
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="cambiarClaveModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modificar <b id="titleModalCambiar"></b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form action="/Usuario/CambiarClave" method="post" autocomplete="off" id="fromCambiarClave">
+                <div class="modal-body row">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="clave">Contraseña</label>
+                            <input type="password" class="form-control" id="clave3" name="clave" placeholder="Ingresa la contraseña" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="repite_clave">Repite Contraseña</label>
+                            <input type="password" class="form-control" id="repite_clave3" name="repite_clave" placeholder="Repite la contraseña" />
+                        </div>
+                    </div>
+                    <input type="hidden" class="form-control" id="id3" name="id" />
+                    <input type="hidden" class="form-control" id="usuario3" name="usuario" />
+                    <input type="hidden" class="form-control" id="id_tercero3" name="id_tercero" />
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

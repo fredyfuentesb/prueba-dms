@@ -52,7 +52,7 @@ namespace PruebaApi.Controllers
                         model.id_tercero = idTerceroCreado;
                         model.id = idUsuario;
                         model.clave = usuarioDto.clave;
-                        data = new { usuario = model, message = "Información guardada correctamente" };
+                        data = model;
                     }
                     else
                     {
@@ -102,7 +102,7 @@ namespace PruebaApi.Controllers
                     statusCode = HttpStatusCode.OK;
                     model.clave = string.Empty;
                     model.id_tercero = usuarioDto.id_tercero;
-                    data = new { usuario = model, message = "Información guardada correctamente" };
+                    data = model;
                 }
                 else
                 {
@@ -144,7 +144,7 @@ namespace PruebaApi.Controllers
             }
             else
             {
-                statusCode = HttpStatusCode.OK;
+                statusCode = HttpStatusCode.NoContent;
                 data = new { message = "No se encontraron registros guardados" };
             }
 
@@ -173,7 +173,7 @@ namespace PruebaApi.Controllers
                 {
                     statusCode = HttpStatusCode.OK;
                     model.clave = string.Empty;
-                    data = new { usuario = model, message = "Información guardada correctamente" };
+                    data = model;
                 }
                 else
                 {

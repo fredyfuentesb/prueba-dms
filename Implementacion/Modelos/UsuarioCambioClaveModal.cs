@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace PruebaApi.Models
+namespace Implementacion.Modelos
 {
-    [DataContract(Name = "UsuarioCambioClaveModel"), Serializable]
-    public class UsuarioCambioClaveModel
+    [DataContract(Name = "UsuarioCambioClaveModal"), Serializable]
+    public class UsuarioCambioClaveModal
     {
         [DataMember(Name = "Id")]
         public int id { get; set; }

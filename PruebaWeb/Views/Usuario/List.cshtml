@@ -1,0 +1,14 @@
+﻿@using System.Data
+@{
+    DataSet usuarios = ViewBag.usuarios;
+}
+
+@foreach (DataRow row in usuarios.Tables[0].Rows)
+{
+<ul>
+    <li><b>Nombre: </b>@row["nombre"]</li>
+    <li><b>Apellidos: </b>@row["apellidos"]</li>
+    <li><b>Email: </b>@row["email"]</li>
+    <li><b>Usuario: </b>@row["usuario"]</li>
+</ul>
+}
