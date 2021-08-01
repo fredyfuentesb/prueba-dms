@@ -148,5 +148,39 @@ namespace Implementacion.Implementacion
             return terceros;
         }
         #endregion
+
+        #region FindById
+        /// <summary>
+        /// Envia una peticion GET a api/Tercero/{id} para obtener los datos de un tercero
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<TercerosDto> FindById(int id)
+        {
+            TercerosDto tercero = new TercerosDto();
+            HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");
+
+            try
+            {
+                var response = await httpClient.GetAsync($"{BASE}/?id={id}");
+                if (response.IsSuccessStatusCode)
+                {
+                    string resultJson = await response.Content.ReadAsStringAsync();
+                    tercero = JsonConvert.DeserializeObject<TercerosDto>(resultJson);
+                }
+                else
+                {
+                    tercero = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+                tercero = null;
+            }
+
+            return tercero;
+        }
+        #endregion
     }
 }

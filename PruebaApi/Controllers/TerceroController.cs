@@ -253,7 +253,7 @@ namespace PruebaApi.Controllers
             }
             else
             {
-                statusCode = HttpStatusCode.OK;
+                statusCode = HttpStatusCode.BadRequest;
                 data = new { message = "No se encontraron registros guardados" };
             }
 

@@ -2,6 +2,8 @@
 using Implementacion.Modelos;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -13,6 +15,7 @@ namespace PruebaWeb.Controllers
     public class TerceroController : Controller
     {
         private readonly TercerosAplicacion _tercero = new TercerosAplicacion();
+        private readonly Tercero_ArchivosAplicacion _terceroArchivo = new Tercero_ArchivosAplicacion();
         // GET: Tercero
         public ActionResult Index()
         {
@@ -115,6 +118,105 @@ namespace PruebaWeb.Controllers
 
             return Json(data, JsonRequestBehavior.AllowGet);
         }
+        #endregion
+
+        #region Archivos
+        public async Task<ActionResult> Archivos(int id)
+        {
+            TercerosDto tercero = await _tercero.FindById(id);
+            ViewBag.tercero = tercero;
+            return View();
+        }
+
+        #region SaveFile
+        [HttpPost]
+        public async Task<JsonResult> SaveFile()
+        {
+            bool guardo = false;
+            object data;
+
+            try
+            {
+                string idunico = Guid.NewGuid().ToString();
+                var file = Request.Files[0];
+                string fileName = file.FileName;
+                Stream fileContent = file.InputStream;
+                string directory = ConfigurationManager.AppSettings["RUTA_ARCHIVOS"];
+                bool es_foto = Convert.ToBoolean(Request.Params.Get("es_foto"));
+
+                string folderName = directory;
+                Directory.CreateDirectory(folderName);
+                file.SaveAs($"{folderName}{fileName}");
+                string fileExtension = Path.GetExtension(file.FileName).ToLower();
+                if (System.IO.File.Exists($"{folderName}{fileName}"))
+                {
+                    System.IO.File.Copy($"{folderName}{fileName}", $"{folderName}{idunico}{fileExtension}");
+                    System.IO.File.Delete($"{folderName}{fileName}");
+                }
+                TerceroArchivoModel model = new TerceroArchivoModel()
+                {
+                    id_tercero = Convert.ToInt32(Request.Params.Get("id_tercero")),
+                    nombre_archivo = fileName,
+                    ruta_archivo = $"{folderName}{idunico}{fileExtension}",
+                    es_foto = es_foto
+                };
+                TerceroArchivoModel archivoCreado = await _terceroArchivo.Save(model);
+                if(archivoCreado != null)
+                {
+                    guardo = true;
+                    data = new { guardo, archivoCreado };
+                }
+                else
+                {
+                    data = new { guardo, message = "No se pudo guardar la informacion" };
+                }
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+                data = new { guardo, message = "No se pudo guardar la información" };
+            }
+
+            return Json(data, JsonRequestBehavior.DenyGet);
+        }
+        #endregion
+
+        #region ListFiles
+        public async Task<JsonResult> ListFiles(int id)
+        {
+            List<Tercero_ArchivosDto> terceroArchivos = await _terceroArchivo.List(id);
+            return Json(terceroArchivos, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region DeleteFile
+        public async Task<JsonResult> DeleteFile(int id)
+        {
+            bool elimino = false;
+            object data;
+
+            Tercero_ArchivosDto terceroArchivoEliminado = await _terceroArchivo.Delete(id);
+            if(terceroArchivoEliminado != null)
+            {
+                elimino = true;
+                data = new { elimino, message = "Se elimino correctamente" };
+            }
+            else
+            {
+                elimino = false;
+                data = new { elimino, message = "No se elimino correctamente" };
+            }
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region DownloadFile
+        public ActionResult DownloadFile(int id)
+        {
+            string rutaPdf = $"{ConfigurationManager.AppSettings["RUTA_DOCUMENTOS_PDF"]}{id}.pdf";
+            return new DownloadResult { VirtualPath = rutaPdf, FileDownloadName = $"{id}.pdf" };
+        }
+        #endregion
         #endregion
     }
 }

@@ -76,6 +76,14 @@ $(document).ready(function () {
         var row = tercero.row(tr);
         eliminarTercero(row.data());
     }); 
+
+    //Se detecta el click el el icono de files tercero para mostar para redireccionar a la vista de archivos del usuario
+    $('#tercerosRegistrados tbody').on('click', 'a.files_tercero', function () {
+        var tr = $(this).closest('tr');
+        var row = tercero.row(tr);
+        window.location.href = `/Tercero/Archivos/${row.data().id}`;
+    });
+    
 });
 
 function refreshTablaTerceros() {

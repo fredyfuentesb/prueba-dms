@@ -37,7 +37,7 @@ namespace PruebaApi.Controllers
                 {
                     model.id = idTerceroArchivo;
                     statusCode = HttpStatusCode.OK;
-                    data = new { archivo = model, message = "Información guardada correctamente" };
+                    data = model;
                 }
                 else
                 {
