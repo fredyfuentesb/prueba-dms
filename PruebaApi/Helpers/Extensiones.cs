@@ -34,6 +34,25 @@ namespace PruebaApi.Helpers
             }
             return variaciones;
         }
+
+        /// <summary>
+        /// Regresa los atributos de un objeto convertidos en un diccionario
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="val"></param>
+        /// <returns></returns>
+        public static Dictionary<string, string> ObtenerDatos<T>(this T val)
+        {
+            Dictionary<string, string> valores = new Dictionary<string, string>();
+
+            PropertyInfo[] atributos = val.GetType().GetProperties();
+            foreach (PropertyInfo atributo in atributos)
+            {
+                valores.Add(atributo.Name, atributo.GetValue(val).ToString());
+            }
+
+            return valores;
+        }
     }
 
     public class Variacion

@@ -3,9 +3,11 @@ using PruebaApi.Helpers;
 using PruebaApi.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
 using System.Web.Http;
 using Transversal;
 using Transversal.Dtos;
@@ -16,6 +18,8 @@ namespace PruebaApi.Controllers
     public class TerceroController : ApiController
     {
         private readonly TercerosRepositorio _tercerosRep = new TercerosRepositorio();
+        private readonly Config_NotificacionRepositorio _configNotificacionRep = new Config_NotificacionRepositorio();
+        private readonly Variables_NotificacionRepositorio _variablesRep = new Variables_NotificacionRepositorio();
 
         #region Save
         /// <summary>
@@ -38,7 +42,41 @@ namespace PruebaApi.Controllers
                 int idTerceroCreado = 0;
                 if(_tercerosRep.Save(terceroDto, ref idTerceroCreado))
                 {
-                    //Todo: Aca de se debe crear la notificacion que se envia al correo cuando se crea un tercero
+                    try
+                    {
+                        Config_NotificacionDto notificacion = _configNotificacionRep.FindByType(1);
+                        string cuerpo = System.IO.File.ReadAllText(notificacion.ruta);
+                        Dictionary<string, string> valores = terceroDto.ObtenerDatos();
+
+                        List<Variables_NotificacionDto> variables = _variablesRep.ListByType(1);
+                        foreach(Variables_NotificacionDto variable in variables)
+                        {
+                            if (variable.destino.Contains(","))
+                            {
+                                string valor = string.Empty;
+                                string[] variablesInternas = variable.destino.Split(',');
+                                foreach (string variableInterna in variablesInternas)
+                                {
+                                    valor += $"{valores[variableInterna]} ";
+                                }
+                                cuerpo = cuerpo.Replace(variable.origen, valor.Trim());
+                            }
+                            else
+                            {
+                                cuerpo = cuerpo.Replace(variable.origen, valores[variable.destino]);
+                            }                            
+                        }
+                        NotificadorSMTP notificadorSmtp = new NotificadorSMTP();
+
+                        List<string> destinatario = new List<string>();
+                        destinatario.Add(terceroDto.email);
+                        MailMessage mensaje = notificadorSmtp.CrearMessage(destinatario, "Contacto creado en prueba-dms", cuerpo, true, ConfigurationManager.AppSettings["email"], ConfigurationManager.AppSettings["email"]);
+                        notificadorSmtp.EnviarMensajeCorreo(mensaje, 1, ConfigurationManager.AppSettings["email"], ConfigurationManager.AppSettings["clave_email"], "smtp.gmail.com", 587, true);
+                    }
+                    catch (Exception ex)
+                    {
+                        string msg = ex.Message;
+                    }
                     model.id = idTerceroCreado;
                     statusCode = HttpStatusCode.OK;
                     data = new { tercero = model, message = "Información guardada correctamente" };
@@ -84,9 +122,54 @@ namespace PruebaApi.Controllers
                 terceroDto.fecha_ultima_modificacion = DateTime.Now;
                 if (_tercerosRep.Update(terceroDto))
                 {
-                    //Todo: Aca de se debe crear la notificacion que se envia al correo cuando se modifica un tercero
-                    //Se obtienen todos cambios realizados
-                    List<Variacion> variaciones = terceroOriginal.ComparacionDetallada(terceroDto);
+                    try
+                    {
+                        Config_NotificacionDto notificacion = _configNotificacionRep.FindByType(2);
+                        string cuerpo = System.IO.File.ReadAllText(notificacion.ruta);
+                        //Se obtienen todos cambios realizados
+                        List<Variacion> variaciones = terceroOriginal.ComparacionDetallada(terceroDto);
+                        Dictionary<string, string> valores = terceroDto.ObtenerDatos();
+
+                        List<Variables_NotificacionDto> variables = _variablesRep.ListByType(2);
+                        foreach (Variables_NotificacionDto variable in variables)
+                        {
+                            if (!variable.origen.Equals("{{variantes}}"))
+                            {
+                                if (variable.destino.Contains(","))
+                                {
+                                    string valor = string.Empty;
+                                    string[] variablesInternas = variable.destino.Split(',');
+                                    foreach (string variableInterna in variablesInternas)
+                                    {
+                                        valor += $"{valores[variableInterna]} ";
+                                    }
+                                    cuerpo = cuerpo.Replace(variable.origen, valor.Trim());
+                                }
+                                else
+                                {
+                                    cuerpo = cuerpo.Replace(variable.origen, valores[variable.destino]);
+                                }
+                            }                            
+                        }
+
+                        string variacionesTextos = string.Empty;
+                        foreach(Variacion variacion in variaciones)
+                        {
+                            variacionesTextos += $"<ul><li>Cambio: <b>{variacion.propiedad}</b></li><li>Valor anterior: <b>{variacion.valorA}</b></li><li>Nuevo Valor <b>{variacion.valorB}</b></li></ul>";
+                        }
+                        cuerpo = cuerpo.Replace("{{variantes}}", variacionesTextos);
+
+                        NotificadorSMTP notificadorSmtp = new NotificadorSMTP();
+
+                        List<string> destinatario = new List<string>();
+                        destinatario.Add(terceroDto.email);
+                        MailMessage mensaje = notificadorSmtp.CrearMessage(destinatario, "Actualizacion de Contacto en prueba-dms", cuerpo, true, ConfigurationManager.AppSettings["email"], ConfigurationManager.AppSettings["email"]);
+                        notificadorSmtp.EnviarMensajeCorreo(mensaje, 1, ConfigurationManager.AppSettings["email"], ConfigurationManager.AppSettings["clave_email"], "smtp.gmail.com", 587, true);
+                    }
+                    catch (Exception ex)
+                    {
+                        string msg = ex.Message;
+                    }                    
                     statusCode = HttpStatusCode.OK;
                     data = new { tercero = terceroDto, message = "Información guardada correctamente" };
                 }
