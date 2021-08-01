@@ -59,5 +59,27 @@ namespace PruebaWeb.Controllers
             return Json(data, JsonRequestBehavior.DenyGet);
         }
         #endregion
+
+        #region Delete
+        public async Task<JsonResult> Delete(int id)
+        {
+            bool elimino = false;
+            object data;
+
+            TercerosDto terceroEliminado = await _tercero.Delete(id);
+            if(terceroEliminado != null)
+            {
+                elimino = true;
+                data = new { elimino, message = "Se elimino correctamente" };
+            }
+            else
+            {
+                elimino = false;
+                data = new { elimino, message = "No se elimino correctamente" };
+            }
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
     }
 }

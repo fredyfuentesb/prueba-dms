@@ -61,7 +61,7 @@
                             <label for="telefono">Telefono</label>
                             <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Ingresa el telefono" />
                         </div>
-                    </div>                    
+                    </div>
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Guardar</button>
@@ -69,42 +69,62 @@
             </form>
         </div>
     </div>
-        <div class="col-md-12 col-sm-12 col-xs-12" style="display: none;" id="dvLoaderTercero">
-            <center><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></center>
-        </div>
-        <div class="container-fluid" style="display: none;" id="dvTerceros">
-            <div class="card card-default">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        <i class="fas fa-users"></i>
-                        Terceros Registrados
-                    </h3>
-                </div>
-                <div class="card-body" style="overflow-x:auto;">
-                    <table class="display responsive nowrap" style="width:100%" id="tercerosRegistrados">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Apellidos</th>
-                                <th>Direccion</th>
-                                <th>Email</th>
-                                <th>Telefono</th>
-                                <th>Opciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+    <div class="col-md-12 col-sm-12 col-xs-12" style="display: none;" id="dvLoaderTercero">
+        <center><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></center>
+    </div>
+    <div class="container-fluid" style="display: none;" id="dvTerceros">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="fas fa-users"></i>
+                    Terceros Registrados
+                </h3>
+            </div>
+            <div class="card-body" style="overflow-x:auto;">
+                <table class="display responsive nowrap" style="width:100%" id="tercerosRegistrados">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>Direccion</th>
+                            <th>Email</th>
+                            <th>Telefono</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </section>
+
+<div id="eliminarTerceroModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Eliminar <b id="titleModalEliminar"></b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body row">
+                <p>¿Esta seguro que desa eliminar a <b id="nombreEliminar"></b>? Esta operación no se puede reversar</p>
+                <input type="hidden" class="form-control" id="id3" name="id" />
+                <input type="hidden" class="form-control" id="nombre3" name="nombre" />
+                <input type="hidden" class="form-control" id="apellidos3" name="apellidos" />
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-danger" onclick="confirmarEliminacion()">Eliminar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

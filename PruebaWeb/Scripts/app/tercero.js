@@ -31,6 +31,13 @@ $(document).ready(function () {
         }
     });
     refreshTablaTerceros();
+
+    //Se detecta el click el el icono de editar usuario para mostar el modal de cambio de clave con la informacion del usuario
+    $('#tercerosRegistrados tbody').on('click', 'a.delete_tercero', function () {
+        var tr = $(this).closest('tr');
+        var row = tercero.row(tr);
+        eliminarTercero(row.data());
+    }); 
 });
 
 function refreshTablaTerceros() {
@@ -69,4 +76,27 @@ function showLoaderTercero(show) {
         $('#dvTerceros').show();
         $('#dvLoaderTercero').hide();
     }
+}
+
+function eliminarTercero(data) {
+    $('#eliminarTerceroModal').modal("show");
+    $('#titleModalEliminar').html(`${data.nombre} ${data.apellidos}`);
+    $('#nombreEliminar').html(`${data.nombre} ${data.apellidos}`);
+    $('#id3').val(data.id);
+    $('#nombre3').val(data.nombre);
+    $('#apellidos3').val(data.apellidos);
+}
+
+function confirmarEliminacion() {
+    var id = $('#id3').val();
+    $.get(`/Tercero/Delete?id=${id}`, function (data) {
+        $('#eliminarTerceroModal').modal("hide");
+        if (data.elimino) {
+            refreshTablaTerceros();
+            toastr.success(`Exito al eliminar el tercero: ${$('#nombre3').val()} ${$('#apellidos3').val()}`);
+        }
+        else {
+            toastr.error(`Error al eliminar el tercero: ${$('#nombre3').val()} ${$('#apellidos3').val()}`);
+        }
+    });
 }
