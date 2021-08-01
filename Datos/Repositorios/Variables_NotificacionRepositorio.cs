@@ -20,5 +20,6 @@ namespace Datos.Repositorios
         public bool Delete(Variables_NotificacionDto dto) => RepositorioGenerico<Variables_NotificacionDto>.GenericOption(dto, "3", "dbo", "DefaultConnection");
         public Variables_NotificacionDto FindById(int id) => RepositorioGenerico<Variables_NotificacionDto>.FindById("id", id.ToString(), "prueba", "dbo", "DefaultConnection");
         public List<Variables_NotificacionDto> List() => RepositorioGenerico<Variables_NotificacionDto>.List("prueba", "dbo", "DefaultConnection");
+        public List<Variables_NotificacionDto> ListByType(int tipo) => RepositorioGenerico<Variables_NotificacionDto>.List("id_tipo_notificacion", tipo.ToString(), "prueba", "dbo", "DefaultConnection");
     }
 }

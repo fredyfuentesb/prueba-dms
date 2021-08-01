@@ -154,9 +154,11 @@
     <Content Include="Global.asax" />
     <Content Include="img\AdminLTELogo.png" />
     <Content Include="img\user2-160x160.jpg" />
+    <Content Include="Scripts\app\notificacion.js" />
     <Content Include="Scripts\app\usuario.js" />
     <Content Include="Scripts\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-progress-upload.js" />
     <Content Include="Scripts\jqueryValidate-es.js" />
     <Content Include="Scripts\jquery\jquery.min.js" />
     <Content Include="Scripts\jquery\jquery.slim.js" />

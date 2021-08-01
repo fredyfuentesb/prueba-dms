@@ -20,7 +20,7 @@ namespace Implementacion.Implementacion
     public class UsuariosAplicacion
     {
         private readonly WebApiHelper _apiHelper = new WebApiHelper();
-        private readonly string BASE = "api/Usuario/";
+        private readonly string BASE = "api/Usuario";
         #region Save
         /// <summary>
         /// Envia la peticion POST a api/Usuario para crear un usuario nuevo
@@ -123,7 +123,7 @@ namespace Implementacion.Implementacion
             StringContent content = _apiHelper.GetSerializedJson(jsonData);
             try
             {
-                var response = await httpClient.PutAsync($"{BASE}CambiarClave", content);
+                var response = await httpClient.PutAsync($"{BASE}/CambiarClave", content);
                 if (response.IsSuccessStatusCode)
                 {
                     string resultJson = await response.Content.ReadAsStringAsync();

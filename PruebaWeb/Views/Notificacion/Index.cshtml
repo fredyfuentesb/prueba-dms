@@ -5,7 +5,8 @@
 
     List<Tipo_NotificacionesDto> tipos = ViewBag.tipos;
 }
-
+<script src="~/Scripts/app/notificacion.js"></script>
+<script src="~/Scripts/jquery-progress-upload.js"></script>
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
@@ -32,12 +33,12 @@
                     Nuevo Usuarios
                 </h3>
             </div>
-            <form action="/Usuario/Save" method="post" autocomplete="off" id="fromUsuario">
+            <form action="/Notificacion/Save" method="post" autocomplete="off" id="fromUsuario">
                 <div class="card-body row">
                     <div class="col-sm-12 col-md-6 col-lg-6">
                         <div class="form-group">
                             <label for="nombre">Tipo Notificacion</label>
-                            <select class="form-control" id="id_tipo_notificacion" name="id_tipo_notificacion">
+                            <select class="form-control" id="id_tipo_notificacion" name="id_tipo_notificacion" onchange="cambiarTipo()">
                                 @foreach(Tipo_NotificacionesDto tipo in tipos)
                                 {
                                     <option value="@tipo.id">@tipo.nombre</option>
@@ -51,9 +52,10 @@
                             <input type="file" class="form-control prospects-file" id="file-prospects" name="file" />                            
                         </div>
                     </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12" id="variablesUsables"></div>
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="submit" class="btn btn-primary" id="uploadButton0">Guardar</button>
                 </div>
             </form>
         </div>

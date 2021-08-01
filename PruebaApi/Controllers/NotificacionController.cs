@@ -16,6 +16,7 @@ namespace PruebaApi.Controllers
     {
         private readonly Config_NotificacionRepositorio _configNotificacionRep = new Config_NotificacionRepositorio();
         private readonly Tipo_NotificacionesRepositorio _tipoNotificacionRep = new Tipo_NotificacionesRepositorio();
+        private readonly Variables_NotificacionRepositorio _variableRep = new Variables_NotificacionRepositorio();
 
         #region Tipos
         [HttpGet, Route("Tipos")]
@@ -90,6 +91,30 @@ namespace PruebaApi.Controllers
                                         .ToList();
                 statusCode = HttpStatusCode.BadRequest;
                 return Request.CreateResponse(statusCode, errors, "application/json");
+            }
+
+            return Request.CreateResponse(statusCode, data, "application/json");
+        }
+        #endregion
+
+        #region Variables
+        [HttpGet, Route("Variables")]
+        public HttpResponseMessage Variables(int tipo)
+        {
+            HttpStatusCode statusCode = new HttpStatusCode();
+            object data = null;
+
+            List<Variables_NotificacionDto> variables = _variableRep.ListByType(tipo);
+
+            if (variables.Any())
+            {
+                statusCode = HttpStatusCode.OK;
+                data = variables;
+            }
+            else
+            {
+                statusCode = HttpStatusCode.NoContent;
+                data = new { message = "No se encontraron registros" };
             }
 
             return Request.CreateResponse(statusCode, data, "application/json");

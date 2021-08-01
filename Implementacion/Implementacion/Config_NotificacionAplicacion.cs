@@ -72,9 +72,29 @@ namespace Implementacion.Implementacion
             {
                 string mesg = ex.Message;                
             }
-
-
             return tipos;
+        }
+        #endregion
+
+        #region variables
+        public async Task<List<Variables_NotificacionDto>> Variables(int tipo)
+        {
+            List<Variables_NotificacionDto> variables = new List<Variables_NotificacionDto>();
+            HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");
+            try
+            {
+                var response = await httpClient.GetAsync($"{BASE}/Variables/?tipo={tipo}");
+                if (response.IsSuccessStatusCode)
+                {
+                    string resultJson = await response.Content.ReadAsStringAsync();
+                    variables = JsonConvert.DeserializeObject<List<Variables_NotificacionDto>>(resultJson);
+                }
+            }
+            catch (Exception ex)
+            {
+                string mesg = ex.Message;
+            }
+            return variables;
         }
         #endregion
     }
