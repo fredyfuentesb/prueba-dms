@@ -49,6 +49,7 @@
     <Compile Include="Repositorios\Menu_RolRepositorio.cs" />
     <Compile Include="Repositorios\RepositorioGenerico.cs" />
     <Compile Include="Repositorios\RolesRepositorio.cs" />
+    <Compile Include="Repositorios\SeguridadRepositorio.cs" />
     <Compile Include="Repositorios\TercerosRepositorio.cs" />
     <Compile Include="Repositorios\Tercero_ArchivosRepositorio.cs" />
     <Compile Include="Repositorios\Tercero_NotificacionRepositorio.cs" />

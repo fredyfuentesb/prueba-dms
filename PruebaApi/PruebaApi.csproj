@@ -159,6 +159,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\NotificacionController.cs" />
+    <Compile Include="Controllers\SeguridadController.cs" />
     <Compile Include="Controllers\TerceroArchivoController.cs" />
     <Compile Include="Controllers\TerceroController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="Models\TerceroArchivoModel.cs" />
     <Compile Include="Models\TerceroModel.cs" />
     <Compile Include="Models\UsuarioCambioClaveModel.cs" />
+    <Compile Include="Models\UsuarioLogin.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
