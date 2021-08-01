@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/app/tercero.js"></script>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Configuracion Terceros</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item active">Terceros</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="fas fa-users"></i>
+                    Nuevo Tercero
+                </h3>
+            </div>
+            <form action="/Tercero/Save" method="post" autocomplete="off" id="fromTercero">
+                <div class="card-body row">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa el nombre" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="apellidos">Apellidos</label>
+                            <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Ingresa los apellidos" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="direccion">Direccion</label>
+                            <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Ingresa la direccion" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Ingresa el email" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="telefono">Telefono</label>
+                            <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Ingresa el telefono" />
+                        </div>
+                    </div>                    
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+        <div class="col-md-12 col-sm-12 col-xs-12" style="display: none;" id="dvLoaderTercero">
+            <center><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></center>
+        </div>
+        <div class="container-fluid" style="display: none;" id="dvTerceros">
+            <div class="card card-default">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-users"></i>
+                        Terceros Registrados
+                    </h3>
+                </div>
+                <div class="card-body" style="overflow-x:auto;">
+                    <table class="display responsive nowrap" style="width:100%" id="tercerosRegistrados">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>Direccion</th>
+                                <th>Email</th>
+                                <th>Telefono</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

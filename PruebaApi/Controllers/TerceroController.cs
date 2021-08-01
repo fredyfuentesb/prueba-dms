@@ -90,7 +90,7 @@ namespace PruebaApi.Controllers
                     }
                     model.id = idTerceroCreado;
                     statusCode = HttpStatusCode.OK;
-                    data = new { tercero = model, message = "Información guardada correctamente" };
+                    data = model;
                 }
                 else
                 {
@@ -189,7 +189,7 @@ namespace PruebaApi.Controllers
                         string msg = ex.Message;
                     }                    
                     statusCode = HttpStatusCode.OK;
-                    data = new { tercero = terceroDto, message = "Información guardada correctamente" };
+                    data = model;
                 }
             }
             else
