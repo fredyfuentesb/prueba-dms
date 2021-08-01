@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EstadisticaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NotificacionController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -130,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\app\loader.css" />
+    <Content Include="Content\chart.js\Chart.min.css" />
     <Content Include="Content\css\adminlte.min.css" />
     <Content Include="Content\css\alt\adminlte.components.min.css" />
     <Content Include="Content\css\alt\adminlte.core.min.css" />
@@ -158,6 +160,8 @@
     <Content Include="Scripts\app\usuario.js" />
     <Content Include="Scripts\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Scripts\chart.js\Chart.bundle.min.js" />
+    <Content Include="Scripts\chart.js\Chart.min.js" />
     <Content Include="Scripts\jquery-progress-upload.js" />
     <Content Include="Scripts\jqueryValidate-es.js" />
     <Content Include="Scripts\jquery\jquery.min.js" />
@@ -211,6 +215,7 @@
     <Content Include="Scripts\js\.eslintrc.json" />
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Notificacion\Index.cshtml" />
+    <Content Include="Views\Estadistica\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Implementacion\Implementacion.csproj">

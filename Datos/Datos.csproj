@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\Config_NotificacionRepositorio.cs" />
+    <Compile Include="Repositorios\EstadisticasKPIRepositorio.cs" />
     <Compile Include="Repositorios\MenusRepositorio.cs" />
     <Compile Include="Repositorios\Menu_RolRepositorio.cs" />
     <Compile Include="Repositorios\RepositorioGenerico.cs" />

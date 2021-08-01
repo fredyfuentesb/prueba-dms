@@ -20,6 +20,7 @@ namespace PruebaApi.Controllers
         private readonly TercerosRepositorio _tercerosRep = new TercerosRepositorio();
         private readonly Config_NotificacionRepositorio _configNotificacionRep = new Config_NotificacionRepositorio();
         private readonly Variables_NotificacionRepositorio _variablesRep = new Variables_NotificacionRepositorio();
+        private readonly Tercero_NotificacionRepositorio _terceroNotificacionRep = new Tercero_NotificacionRepositorio();
 
         #region Save
         /// <summary>
@@ -44,10 +45,13 @@ namespace PruebaApi.Controllers
                 {
                     try
                     {
+                        //Se obtiene la platilla que se va a utilizar en notificacion del correo
                         Config_NotificacionDto notificacion = _configNotificacionRep.FindByType(1);
+                        //Se lee el texto html de la plantilla que se usara para notificar
                         string cuerpo = System.IO.File.ReadAllText(notificacion.ruta);
+                        //Se obtiene un diccionario con todos los datos del tercero
                         Dictionary<string, string> valores = terceroDto.ObtenerDatos();
-
+                        //Se obtiene las variables usables en la notificacion
                         List<Variables_NotificacionDto> variables = _variablesRep.ListByType(1);
                         foreach(Variables_NotificacionDto variable in variables)
                         {
@@ -72,6 +76,13 @@ namespace PruebaApi.Controllers
                         destinatario.Add(terceroDto.email);
                         MailMessage mensaje = notificadorSmtp.CrearMessage(destinatario, "Contacto creado en prueba-dms", cuerpo, true, ConfigurationManager.AppSettings["email"], ConfigurationManager.AppSettings["email"]);
                         notificadorSmtp.EnviarMensajeCorreo(mensaje, 1, ConfigurationManager.AppSettings["email"], ConfigurationManager.AppSettings["clave_email"], "smtp.gmail.com", 587, true);
+                        Tercero_NotificacionDto terceroNotificacionDto = new Tercero_NotificacionDto
+                        {
+                            id_config_notificacion = 1,
+                            id_tercero = idTerceroCreado,
+                            fecha = DateTime.Now
+                        };
+                        _terceroNotificacionRep.Save(terceroNotificacionDto);
                     }
                     catch (Exception ex)
                     {
@@ -165,6 +176,13 @@ namespace PruebaApi.Controllers
                         destinatario.Add(terceroDto.email);
                         MailMessage mensaje = notificadorSmtp.CrearMessage(destinatario, "Actualizacion de Contacto en prueba-dms", cuerpo, true, ConfigurationManager.AppSettings["email"], ConfigurationManager.AppSettings["email"]);
                         notificadorSmtp.EnviarMensajeCorreo(mensaje, 1, ConfigurationManager.AppSettings["email"], ConfigurationManager.AppSettings["clave_email"], "smtp.gmail.com", 587, true);
+                        Tercero_NotificacionDto terceroNotificacionDto = new Tercero_NotificacionDto
+                        {
+                            id_config_notificacion = 2,
+                            id_tercero = terceroDto.id,
+                            fecha = DateTime.Now
+                        };
+                        _terceroNotificacionRep.Save(terceroNotificacionDto);
                     }
                     catch (Exception ex)
                     {

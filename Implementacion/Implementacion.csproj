@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementacion\Config_NotificacionAplicacion.cs" />
+    <Compile Include="Implementacion\EstadisticaAplicacion.cs" />
     <Compile Include="Implementacion\UsuariosAplicacion.cs" />
     <Compile Include="Modelos\ConfigNotificacionModel.cs" />
     <Compile Include="Modelos\UsuarioCambioClaveModel.cs" />

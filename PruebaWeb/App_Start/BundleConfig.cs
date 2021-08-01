@@ -12,7 +12,8 @@ namespace PruebaWeb
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery/jquery.min.js",
                         "~/Scripts/sweetalert2/sweetalert2.min.js",
-                        "~/Scripts/toastr/toastr.min.js"));
+                        "~/Scripts/toastr/toastr.min.js",
+                        "~/Scripts/chart.js/Chart.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/adminlte").Include(
                         "~/Scripts/bootstrap/js/bootstrap.bundle.min.js",
@@ -26,6 +27,7 @@ namespace PruebaWeb
                       "~/Content/fontawesome-free/css/all.min.css",
                       "~/Content/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css",
                       "~/Content/toastr/toastr.min.css",
+                      "~/Content/chart.js/Chart.min.css",
                       "~/Content/app/loader.css"));
         }
     }
