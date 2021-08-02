@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Implementacion.Modelos.UsuarioLogin
+@{
     Layout = null;
 }
 
@@ -51,6 +52,9 @@
                     </div>
                 </form>
                 <br />
+                <p class="mb-1">
+                    @Html.ValidationSummary(true)
+                </p>
                 <p class="mb-1">
                     <a href="@Url.Action("OlvidoClave","Auth")">Olvide mi contraseña</a>
                 </p>

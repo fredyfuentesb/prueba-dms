@@ -42,7 +42,8 @@ namespace PruebaWeb.Controllers
                 return this.RedirectToAction("Index", "Estadistica");
 
             }
-            return View();
+            ModelState.AddModelError(string.Empty, "El Usuario o Contraseña suministrados son incorrectos");
+            return View(model);
         }
 
         public ActionResult Logout()
