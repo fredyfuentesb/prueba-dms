@@ -16,6 +16,7 @@ namespace PruebaWeb.Controllers
     public class AuthController : Controller
     {
         private readonly SeguridadAplicacion _seguridad = new SeguridadAplicacion();
+        private readonly UsuariosAplicacion _usuarioApp = new UsuariosAplicacion();
         // GET: Auth
         [NoLogin]
         public ActionResult Login()
@@ -68,6 +69,12 @@ namespace PruebaWeb.Controllers
             Dictionary<string, string> datos = StringHelper.ObtenerDiccionario(decodificado);
             ViewBag.datos = datos;
             return View();
+        }
+
+        public async Task<ActionResult> CambiarClave(UsuarioCambioClaveModel model)
+        {
+            UsuarioCambioClaveModel cambio = await _usuarioApp.CambiarClave(model);
+            return this.RedirectToAction("Login", "Auth");
         }
     }
 }

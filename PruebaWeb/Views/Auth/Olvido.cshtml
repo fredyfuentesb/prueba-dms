@@ -17,6 +17,27 @@
     <link rel="stylesheet" href="~/Content/css/adminlte.min.css">
     <!-- jQuery -->
     <script src="~/Scripts/jquery/jquery.min.js"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
+    <script src="~/Scripts/jqueryValidate-es.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#formOlvido').validate({
+                focusInvalid: false,
+                ignore: "",
+                rules: {                    
+                    clave: { required: true, minlength: 5 },
+                    clave2: { minlength: 5, equalTo: "#clave" }
+                },
+                submitHandler: function (form) {
+                    $.post('@Url.Action("CambiarClave", "Auth")', $('#formOlvido').serialize(), function () {
+                        window.location.href = `/Auth/Login`;
+                    });
+                }
+            });
+        });
+    </script>
 </head>
 <body class="hold-transition login-page">
     <div class="login-box">
@@ -27,9 +48,11 @@
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Hola <b>@datos["nombre"]</b> Estas a solo un paso de recuperar tu acceso</p>
 
-                <form action="login.html" method="post">
+                <form action="@Url.Action("CambiarClave","Auth")" method="post" id="formOlvido">
+                    <input type="hidden" id="id" name="id" value="@datos["id"]" />
+                    <input type="hidden" id="usuario" name="usuario" value="@datos["usuario"]" />
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Contraseña">
+                        <input type="password" class="form-control" id="clave" name="clave" placeholder="Contraseña">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -37,7 +60,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Repite Contraseña">
+                        <input type="password" class="form-control" id="clave2" name="clave2" placeholder="Repite Contraseña">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
