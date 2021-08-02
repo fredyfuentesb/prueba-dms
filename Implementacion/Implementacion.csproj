@@ -54,6 +54,7 @@
     <Compile Include="Implementacion\Tercero_ArchivosAplicacion.cs" />
     <Compile Include="Implementacion\UsuariosAplicacion.cs" />
     <Compile Include="Modelos\ConfigNotificacionModel.cs" />
+    <Compile Include="Modelos\RespuestaLoginModel.cs" />
     <Compile Include="Modelos\TerceroArchivoModel.cs" />
     <Compile Include="Modelos\TerceroModel.cs" />
     <Compile Include="Modelos\UsuarioCambioClaveModel.cs" />

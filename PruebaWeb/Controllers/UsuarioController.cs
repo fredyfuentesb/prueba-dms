@@ -31,7 +31,7 @@ namespace PruebaWeb.Controllers
         {
             bool vieneInformacion = false;
             object data;
-            DataSet usuariosDS = await _usuarioApp.List();
+            DataSet usuariosDS = await _usuarioApp.List(Session["token"].ToString());
             if(usuariosDS != null)
             {
                 List<UsuarioModel> usuarios = usuariosDS.Tables[0].DataTableToList<UsuarioModel>();
@@ -60,7 +60,7 @@ namespace PruebaWeb.Controllers
 
             if (ModelState.IsValid)
             {
-                UsuarioModel usuarioCreado = await _usuarioApp.Save(model);
+                UsuarioModel usuarioCreado = await _usuarioApp.Save(model, Session["token"].ToString());
                 if(usuarioCreado != null)
                 {
                     guardo = true;
@@ -101,7 +101,7 @@ namespace PruebaWeb.Controllers
 
             if (ModelState.IsValid)
             {
-                UsuarioModel usuarioCreado = await _usuarioApp.Update(model);
+                UsuarioModel usuarioCreado = await _usuarioApp.Update(model, Session["token"].ToString());
                 if (usuarioCreado != null)
                 {
                     guardo = true;

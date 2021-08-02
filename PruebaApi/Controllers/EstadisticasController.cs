@@ -9,6 +9,7 @@ using System.Web.Http;
 
 namespace PruebaApi.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/Estadisticas")]
     public class EstadisticasController : ApiController
     {

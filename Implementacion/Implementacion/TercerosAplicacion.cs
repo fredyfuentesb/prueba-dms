@@ -21,10 +21,11 @@ namespace Implementacion.Implementacion
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<TerceroModel> Save(TerceroModel model)
+        public async Task<TerceroModel> Save(TerceroModel model, string token)
         {
             TerceroModel terceroCreado = new TerceroModel();
             HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             string jsonData = JsonConvert.SerializeObject(model);
             StringContent content = _apiHelper.GetSerializedJson(jsonData);
 
@@ -57,10 +58,11 @@ namespace Implementacion.Implementacion
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<TerceroModel> Update(TerceroModel model)
+        public async Task<TerceroModel> Update(TerceroModel model, string token)
         {
             TerceroModel terceroCreado = new TerceroModel();
             HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             string jsonData = JsonConvert.SerializeObject(model);
             StringContent content = _apiHelper.GetSerializedJson(jsonData);
 
@@ -93,10 +95,11 @@ namespace Implementacion.Implementacion
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<TercerosDto> Delete(int id)
+        public async Task<TercerosDto> Delete(int id, string token)
         {
             TercerosDto terceroEliminado = new TercerosDto();
-            HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");            
+            HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
             try
             {
@@ -126,10 +129,11 @@ namespace Implementacion.Implementacion
         /// Envia una peticion get a api/Tercero para obtener la lista de los terceros registrados
         /// </summary>
         /// <returns></returns>
-        public async Task<List<TercerosDto>> List()
+        public async Task<List<TercerosDto>> List(string token)
         {
             List<TercerosDto> terceros = new List<TercerosDto>();
             HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
             try
             {
@@ -155,10 +159,11 @@ namespace Implementacion.Implementacion
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<TercerosDto> FindById(int id)
+        public async Task<TercerosDto> FindById(int id, string token)
         {
             TercerosDto tercero = new TercerosDto();
             HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
             try
             {

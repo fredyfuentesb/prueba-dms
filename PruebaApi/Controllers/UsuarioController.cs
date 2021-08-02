@@ -13,6 +13,7 @@ using Transversal.Helpers;
 
 namespace PruebaApi.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/Usuario")]
     public class UsuarioController : ApiController
     {
@@ -158,6 +159,7 @@ namespace PruebaApi.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpPut, Route("CambiarClave")]
         public HttpResponseMessage CambiarClave([FromBody] UsuarioCambioClaveModel model)
         {

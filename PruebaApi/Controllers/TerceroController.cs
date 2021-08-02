@@ -14,6 +14,7 @@ using Transversal.Dtos;
 
 namespace PruebaApi.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/Tercero")]
     public class TerceroController : ApiController
     {

@@ -30,8 +30,9 @@ namespace PruebaApi.Controllers
             DataSet datos = _seguridadRep.IniciarSesion(model.usuario, model.clave);
             if(datos != null && datos.Tables.Count > 0 && datos.Tables[0].Rows.Count > 0)
             {
+                var token = TokenGenerator.GenerateTokenJwt(model.usuario);
                 statusCode = HttpStatusCode.OK;
-                data = datos;
+                data = new { datos, token };
             }
             else
             {

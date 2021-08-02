@@ -16,9 +16,9 @@ namespace Implementacion.Implementacion
         private readonly string BASE = "api/Seguridad";
 
         #region Login
-        public async Task<DataSet> Login(UsuarioLogin model)
+        public async Task<RespuestaLoginModel> Login(UsuarioLogin model)
         {
-            DataSet datos = new DataSet();
+            RespuestaLoginModel datos = new RespuestaLoginModel();
             HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");
             string jsonData = JsonConvert.SerializeObject(model);
             StringContent content = _apiHelper.GetSerializedJson(jsonData);
@@ -28,7 +28,7 @@ namespace Implementacion.Implementacion
                 if (response.IsSuccessStatusCode)
                 {
                     string resultJson = await response.Content.ReadAsStringAsync();
-                    datos = JsonConvert.DeserializeObject<DataSet>(resultJson);
+                    datos = JsonConvert.DeserializeObject<RespuestaLoginModel>(resultJson);
                 }
                 else
                 {

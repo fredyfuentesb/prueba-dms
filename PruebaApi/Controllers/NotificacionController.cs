@@ -11,6 +11,7 @@ using Transversal.Dtos;
 
 namespace PruebaApi.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/Notificacion")]
     public class NotificacionController : ApiController
     {

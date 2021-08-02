@@ -22,10 +22,11 @@ namespace Implementacion.Implementacion
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<TerceroArchivoModel> Save(TerceroArchivoModel model)
+        public async Task<TerceroArchivoModel> Save(TerceroArchivoModel model, string token)
         {
             TerceroArchivoModel terceroArchivoModel = new TerceroArchivoModel();
             HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             string jsonData = JsonConvert.SerializeObject(model);
             StringContent content = _apiHelper.GetSerializedJson(jsonData);
 
@@ -58,10 +59,11 @@ namespace Implementacion.Implementacion
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<List<Tercero_ArchivosDto>> List(int id)
+        public async Task<List<Tercero_ArchivosDto>> List(int id, string token)
         {
             List<Tercero_ArchivosDto> terceroArchivos = new List<Tercero_ArchivosDto>();
             HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             try
             {
                 var response = await httpClient.GetAsync($"{BASE}/{id}/List");
@@ -80,10 +82,11 @@ namespace Implementacion.Implementacion
         #endregion
 
         #region FindById
-        public async Task<Tercero_ArchivosDto> FindById(int id)
+        public async Task<Tercero_ArchivosDto> FindById(int id, string token)
         {
             Tercero_ArchivosDto terceroArchivo = new Tercero_ArchivosDto();
             HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
             try
             {
@@ -114,10 +117,11 @@ namespace Implementacion.Implementacion
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<Tercero_ArchivosDto> Delete(int id)
+        public async Task<Tercero_ArchivosDto> Delete(int id, string token)
         {
             Tercero_ArchivosDto terceroArchivoEliminado = new Tercero_ArchivosDto();
             HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
             try
             {

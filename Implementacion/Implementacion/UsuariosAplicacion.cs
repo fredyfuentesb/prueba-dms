@@ -27,10 +27,11 @@ namespace Implementacion.Implementacion
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<UsuarioModel> Save(UsuarioModel model)
+        public async Task<UsuarioModel> Save(UsuarioModel model, string token)
         {
             UsuarioModel usuarioCreado = new UsuarioModel();
             HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             string jsonData = JsonConvert.SerializeObject(model);
             StringContent content = _apiHelper.GetSerializedJson(jsonData);
             try
@@ -61,10 +62,11 @@ namespace Implementacion.Implementacion
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<UsuarioModel> Update(UsuarioModel model)
+        public async Task<UsuarioModel> Update(UsuarioModel model, string token)
         {
             UsuarioModel usuarioModificado = new UsuarioModel();
             HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             string jsonData = JsonConvert.SerializeObject(model);
             StringContent content = _apiHelper.GetSerializedJson(jsonData);
             try
@@ -90,10 +92,11 @@ namespace Implementacion.Implementacion
         #endregion
 
         #region List
-        public async Task<DataSet> List()
+        public async Task<DataSet> List(string token)
         {
             DataSet usuarios = new DataSet();
             HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
             try
             {

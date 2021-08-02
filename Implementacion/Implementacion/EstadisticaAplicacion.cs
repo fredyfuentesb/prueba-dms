@@ -25,10 +25,11 @@ namespace Implementacion.Implementacion
         /// Envia una peticion get a api/Estadisticas para traer las estadisticas de la aplicacion
         /// </summary>
         /// <returns></returns>
-        public async Task<DataSet> Kpi()
+        public async Task<DataSet> Kpi(string token)
         {
             DataSet kpi = new DataSet();
             HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
             try
             {

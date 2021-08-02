@@ -21,10 +21,11 @@ namespace Implementacion.Implementacion
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<ConfigNotificacionModel> Save(ConfigNotificacionModel model)
+        public async Task<ConfigNotificacionModel> Save(ConfigNotificacionModel model, string token)
         {
             ConfigNotificacionModel configNotificacionModel = new ConfigNotificacionModel();
             HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             string jsonData = JsonConvert.SerializeObject(model);
             StringContent content = _apiHelper.GetSerializedJson(jsonData);
             try
@@ -55,10 +56,11 @@ namespace Implementacion.Implementacion
         /// Lista todos los tipos de notificacion que se encuentran registrados
         /// </summary>
         /// <returns></returns>
-        public async Task<List<Tipo_NotificacionesDto>> Tipos()
+        public async Task<List<Tipo_NotificacionesDto>> Tipos(string token)
         {
             List<Tipo_NotificacionesDto> tipos = new List<Tipo_NotificacionesDto>();
             HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             try
             {
                 var response = await httpClient.GetAsync($"{BASE}/Tipos");
@@ -77,10 +79,11 @@ namespace Implementacion.Implementacion
         #endregion
 
         #region variables
-        public async Task<List<Variables_NotificacionDto>> Variables(int tipo)
+        public async Task<List<Variables_NotificacionDto>> Variables(int tipo, string token)
         {
             List<Variables_NotificacionDto> variables = new List<Variables_NotificacionDto>();
             HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             try
             {
                 var response = await httpClient.GetAsync($"{BASE}/Variables/?tipo={tipo}");

@@ -27,16 +27,17 @@ namespace PruebaWeb.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(UsuarioLogin model)
         {
-            DataSet datos = await _seguridad.Login(model);
+            RespuestaLoginModel datos = await _seguridad.Login(model);
             if(datos != null)
             {
-                string usuario = datos.Tables[0].Rows[0]["usuario"].ToString();
-                string nombre_completo = $"{datos.Tables[0].Rows[0]["nombre"].ToString()} {datos.Tables[0].Rows[0]["apellidos"].ToString()}";
-                string email = datos.Tables[0].Rows[0]["email"].ToString();
+                string usuario = datos.datos.Tables[0].Rows[0]["usuario"].ToString();
+                string nombre_completo = $"{datos.datos.Tables[0].Rows[0]["nombre"].ToString()} {datos.datos.Tables[0].Rows[0]["apellidos"].ToString()}";
+                string email = datos.datos.Tables[0].Rows[0]["email"].ToString();
                 SessionHelper.AddUserToSession(usuario);
                 Session["usuario"] = usuario;
                 Session["nombre_completo"] = nombre_completo;
                 Session["email"] = email;
+                Session["token"] = datos.token;
 
                 return this.RedirectToAction("Index", "Estadistica");
 

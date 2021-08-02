@@ -20,14 +20,14 @@ namespace PruebaWeb.Controllers
         // GET: Notificacion
         public async Task<ActionResult> Index()
         {
-            List<Tipo_NotificacionesDto> tipos = await _configNotificacionApp.Tipos();
+            List<Tipo_NotificacionesDto> tipos = await _configNotificacionApp.Tipos(Session["token"].ToString());
             ViewBag.tipos = tipos;
             return View();
         }
 
         public async Task<JsonResult> Variables(int tipo)
         {
-            List<Variables_NotificacionDto> variables = await _configNotificacionApp.Variables(tipo);
+            List<Variables_NotificacionDto> variables = await _configNotificacionApp.Variables(tipo, Session["token"].ToString());
             return Json(variables, JsonRequestBehavior.AllowGet);
         }
 
@@ -60,7 +60,7 @@ namespace PruebaWeb.Controllers
                     ruta = $"{folderName}{idunico}{fileExtension}",
                     estado = true
                 };
-                ConfigNotificacionModel configCreada = await _configNotificacionApp.Save(configNotificacion);
+                ConfigNotificacionModel configCreada = await _configNotificacionApp.Save(configNotificacion, Session["token"].ToString());
                 if(configCreada != null)
                 {
                     guardo = true;

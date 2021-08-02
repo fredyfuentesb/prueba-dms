@@ -17,7 +17,8 @@ namespace PruebaWeb.Controllers
         // GET: Estadistica
         public async Task<ActionResult> Index()
         {
-            DataSet kpi = await _estadisticaApp.Kpi();
+
+            DataSet kpi = await _estadisticaApp.Kpi(Session["token"].ToString());
             ViewBag.kpi = kpi;
             return View();
         }

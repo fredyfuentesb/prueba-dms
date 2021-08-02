@@ -26,7 +26,7 @@ namespace PruebaWeb.Controllers
 
         public async Task<JsonResult> List()
         {
-            List<TercerosDto> terceros = await _tercero.List();
+            List<TercerosDto> terceros = await _tercero.List(Session["token"].ToString());
             return Json(terceros, JsonRequestBehavior.AllowGet);
         }
 
@@ -39,7 +39,7 @@ namespace PruebaWeb.Controllers
 
             if (ModelState.IsValid)
             {
-                TerceroModel terceroCreado = await _tercero.Save(model);
+                TerceroModel terceroCreado = await _tercero.Save(model, Session["token"].ToString());
                 if(terceroCreado != null)
                 {
                     guardo = true;
@@ -74,7 +74,7 @@ namespace PruebaWeb.Controllers
 
             if (ModelState.IsValid)
             {
-                TerceroModel terceroCreado = await _tercero.Update(model);
+                TerceroModel terceroCreado = await _tercero.Update(model, Session["token"].ToString());
                 if (terceroCreado != null)
                 {
                     guardo = true;
@@ -106,7 +106,7 @@ namespace PruebaWeb.Controllers
             bool elimino = false;
             object data;
 
-            TercerosDto terceroEliminado = await _tercero.Delete(id);
+            TercerosDto terceroEliminado = await _tercero.Delete(id, Session["token"].ToString());
             if(terceroEliminado != null)
             {
                 elimino = true;
@@ -125,7 +125,7 @@ namespace PruebaWeb.Controllers
         #region Archivos
         public async Task<ActionResult> Archivos(int id)
         {
-            TercerosDto tercero = await _tercero.FindById(id);
+            TercerosDto tercero = await _tercero.FindById(id, Session["token"].ToString());
             ViewBag.tercero = tercero;
             return View();
         }
@@ -162,7 +162,7 @@ namespace PruebaWeb.Controllers
                     ruta_archivo = $"{folderName}{idunico}{fileExtension}",
                     es_foto = es_foto
                 };
-                TerceroArchivoModel archivoCreado = await _terceroArchivo.Save(model);
+                TerceroArchivoModel archivoCreado = await _terceroArchivo.Save(model, Session["token"].ToString());
                 if(archivoCreado != null)
                 {
                     guardo = true;
@@ -186,7 +186,7 @@ namespace PruebaWeb.Controllers
         #region ListFiles
         public async Task<JsonResult> ListFiles(int id)
         {
-            List<Tercero_ArchivosDto> terceroArchivos = await _terceroArchivo.List(id);
+            List<Tercero_ArchivosDto> terceroArchivos = await _terceroArchivo.List(id, Session["token"].ToString());
             return Json(terceroArchivos, JsonRequestBehavior.AllowGet);
         }
         #endregion
@@ -197,7 +197,7 @@ namespace PruebaWeb.Controllers
             bool elimino = false;
             object data;
 
-            Tercero_ArchivosDto terceroArchivoEliminado = await _terceroArchivo.Delete(id);
+            Tercero_ArchivosDto terceroArchivoEliminado = await _terceroArchivo.Delete(id, Session["token"].ToString());
             if(terceroArchivoEliminado != null)
             {
                 if (System.IO.File.Exists(terceroArchivoEliminado.ruta_archivo))
@@ -219,7 +219,7 @@ namespace PruebaWeb.Controllers
         #region DownloadFile
         public async Task<ActionResult> DownloadFile(int id)
         {
-            Tercero_ArchivosDto terceroArchivo = await _terceroArchivo.FindById(id);
+            Tercero_ArchivosDto terceroArchivo = await _terceroArchivo.FindById(id, Session["token"].ToString());
             string rutaPdf = $"{terceroArchivo.ruta_archivo}";
             return new DownloadResult { VirtualPath = rutaPdf, FileDownloadName = $"{terceroArchivo.nombre_archivo}" };
         }
