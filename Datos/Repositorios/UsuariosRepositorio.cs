@@ -35,6 +35,21 @@ namespace Datos.Repositorios
             }
             return result;
         }
+        public DataSet FindByUsuario(string usuario)
+        {
+            DataSet result = new DataSet();
+            try
+            {
+                string where = $" WHERE usuario='{usuario}'";
+                result = RepositorioGenerico<DataSet>.GenericQuery("DefaultConnection", "*", 1, where, 0, "", " prueba.dbo.vw_usuario_tercero");
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+                return null;
+            }
+            return result;
+        }
 
     }
 }

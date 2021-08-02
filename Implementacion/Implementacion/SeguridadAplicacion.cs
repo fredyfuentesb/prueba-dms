@@ -44,5 +44,32 @@ namespace Implementacion.Implementacion
             return datos;
         }
         #endregion
+
+        #region OlvidoClave
+        public async Task<bool> OlvidoClave(string usuario)
+        {
+            bool envio = false;
+            HttpClient httpClient = _apiHelper.GenericHttpClient("base_url");
+
+            try
+            {
+                var response = await httpClient.GetAsync($"{BASE}/?usuario={usuario}");
+                if (response.IsSuccessStatusCode)
+                {
+                    envio = true;
+                }
+                else
+                {
+                    envio = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+                envio = false;
+            }
+            return envio;
+        }
+        #endregion
     }
 }

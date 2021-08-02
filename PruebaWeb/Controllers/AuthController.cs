@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Transversal.Helpers;
 
 namespace PruebaWeb.Controllers
 {
@@ -47,6 +48,26 @@ namespace PruebaWeb.Controllers
             Session.RemoveAll();
             SessionHelper.DestroyUserSession();
             return this.RedirectToAction("Login", "Auth");
+        }
+
+        public ActionResult OlvidoClave()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ConfirmoOlvidoClave()
+        {
+            bool envio = await _seguridad.OlvidoClave(Request.Params.Get("usuario"));
+            return this.RedirectToAction("Login", "Auth");
+        }
+
+        public ActionResult Olvido(string id)
+        {
+            string decodificado = HashHelper.Base64Decode(id);
+            Dictionary<string, string> datos = StringHelper.ObtenerDiccionario(decodificado);
+            ViewBag.datos = datos;
+            return View();
         }
     }
 }

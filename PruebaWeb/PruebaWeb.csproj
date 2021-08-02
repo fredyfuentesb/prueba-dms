@@ -132,6 +132,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\SessionHelper.cs" />
+    <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tags\AutenticadoAttribute.cs" />
   </ItemGroup>
@@ -227,6 +228,8 @@
     <Content Include="Views\Tercero\Index.cshtml" />
     <Content Include="Views\Tercero\Archivos.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
+    <Content Include="Views\Auth\Olvido.cshtml" />
+    <Content Include="Views\Auth\OlvidoClave.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Implementacion\Implementacion.csproj">
