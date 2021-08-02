@@ -68,6 +68,12 @@ namespace PruebaWeb.Controllers
             string decodificado = HashHelper.Base64Decode(id);
             Dictionary<string, string> datos = StringHelper.ObtenerDiccionario(decodificado);
             ViewBag.datos = datos;
+            DateTime fechaLimite = Convert.ToDateTime(datos["fecha"]);
+            DateTime fechaActual = DateTime.Now;
+            if(fechaActual > fechaLimite)
+            {
+                return this.RedirectToAction("TiempoAgotado", "Auth");
+            }
             return View();
         }
 
@@ -75,6 +81,11 @@ namespace PruebaWeb.Controllers
         {
             UsuarioCambioClaveModel cambio = await _usuarioApp.CambiarClave(model);
             return this.RedirectToAction("Login", "Auth");
+        }
+
+        public ActionResult TiempoAgotado()
+        {
+            return View();
         }
     }
 }

@@ -230,6 +230,7 @@
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Auth\Olvido.cshtml" />
     <Content Include="Views\Auth\OlvidoClave.cshtml" />
+    <Content Include="Views\Auth\TiempoAgotado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Implementacion\Implementacion.csproj">
